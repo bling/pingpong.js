@@ -27,10 +27,11 @@ function StreamCtrl($scope, $http) {
 
   var source = new EventSource('/stream/home');
   source.onmessage = function (e) {
-    while ($scope.tweets.length > 100)
-      $scope.tweets.shift();
+    $scope.$apply(function() {
+      while ($scope.tweets.length > 100)
+        $scope.tweets.shift();
 
-    $scope.tweets.push(JSON.parse(e.data));
-    $scope.$apply();
+      $scope.tweets.push(JSON.parse(e.data));
+    });
   };
 }
