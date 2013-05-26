@@ -33,9 +33,8 @@ app.get('/partials/:name', routes.partials);
 app.get('/api/name', api.name);
 
 // streams
-app.get('/stream/', stream.index);
-app.get('/stream/index', stream.index);
-app.get('/stream/home', stream.home);
+app.get('/stream/?', stream.index);
+app.get('/stream/home/?', stream.home);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
