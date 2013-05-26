@@ -1,6 +1,0 @@
-p
-  script.
-    var source = new EventSource('/stream/home');
-    source.onmessage = function(e) {
-      document.body.innerHTML += e.data + '<br>';
-    };

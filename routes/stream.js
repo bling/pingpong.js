@@ -20,7 +20,7 @@ function minify(tweet) {
 }
 
 exports.index = function(req, res) {
-  res.render('stream');
+  res.render('partials/stream');
 };
 
 exports.home = function(req, res) {

@@ -1,11 +1,18 @@
 'use strict';
 
 /* Directives */
-
-
-angular.module('pingpongApp.directives', []).
-  directive('appVersion', ['version', function(version) {
-    return function(scope, elm, attrs) {
-      elm.text(version);
+angular.module('pingpongApp.directives', [])
+  .directive('tweet', function() {
+    return {
+      template: '<div>hello world from tweet</div>',
+      link: function ($scope, $el, $attr) {
+      }
     };
-  }]);
+  })
+  .directive('tweetList', function() {
+    return {
+      template: '<ul><li>tweet list</li></ul>',
+      link: function ($scope, $el, $attr) {
+      }
+    };
+  });

@@ -1,0 +1,6 @@
+div(ng-controller='StreamCtrl').tweets
+  ul
+    li(ng-repeat='t in tweets')
+      p {{t.name}}
+      p {{t.screen_name}}
+      p {{t.text}}
