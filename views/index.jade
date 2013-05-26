@@ -2,14 +2,12 @@ extends layout
 
 block body
   div(ng-controller='AppCtrl')
-    h2 Hello {{name}}
+    h2 pingpong.js
     ul.menu
       li
-        a(href='view1') view1
+        a(href='stream/home') home
       li
-        a(href='view2') view2
-      li
-        a(href='stream') stream
+        a(href='stream/firehose') firehose
 
     div(ng-view)
 
