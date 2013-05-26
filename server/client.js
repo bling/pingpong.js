@@ -1,5 +1,5 @@
 var twit = require('twit');
-var nconf = require('nconf');
+var nconf = require('nconf').file('./config.json');
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
 

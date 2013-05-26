@@ -1,16 +1,8 @@
 var express = require('express');
 var routes = require('./routes');
+var stream = require('./routes/stream');
 var api = require('./routes/api');
 var app = module.exports = express();
-
-var nconf = require('nconf').file('./config.json');
-var client = require('./server/client');
-
-var t = new client();
-t.on('tweet', function(tweet) {
-  console.log(tweet);
-});
-t.connect();
 
 // Configuration
 app.configure(function() {
@@ -40,6 +32,11 @@ app.get('/partials/:name', routes.partials);
 // JSON API
 app.get('/api/name', api.name);
 
+// streams
+app.get('/stream/', stream.index);
+app.get('/stream/index', stream.index);
+app.get('/stream/home', stream.home);
+
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
 
@@ -47,3 +44,4 @@ app.get('*', routes.index);
 app.listen(3000, function() {
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
+
