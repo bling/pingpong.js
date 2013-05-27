@@ -4,6 +4,8 @@ var util = require('util');
 var EventEmitter = require('events').EventEmitter;
 
 function Client() {
+  'use strict';
+
   var that = this;
 
   var T = new twit({
@@ -15,9 +17,10 @@ function Client() {
 
   this.updateStatus = function(text) {
     T.post(
-      'statuses/update', {
-      status: text
-    }, function(err, reply) {});
+      'statuses/update',
+      { status: text },
+      function(err, reply) {
+      });
   };
 
   this.connect = function() {
