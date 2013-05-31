@@ -1,7 +1,5 @@
 var express = require('express');
-var routes = require('./routes');
 var stream = require('./routes/stream');
-var api = require('./routes/api');
 var app = module.exports = express();
 
 // Configuration
@@ -25,18 +23,28 @@ app.configure('production', function() {
   app.use(express.errorHandler());
 });
 
-// Routes
-app.get('/', routes.index);
-app.get('/partials/:name', routes.partials);
+app.get('/', function(req, res) {
+  res.render('index');
+});
+app.get('/partials/:name', function(req, res) {
+  var name = req.params.name;
+  res.render('partials/' + name);
+});
 
-// JSON API
-app.get('/api/name', api.name);
+app.get('/angular/?', function(req, res) {
+  res.render('angular');
+});
 
 // streams
 app.get('/stream/home/?', stream.home);
+app.get('/stream/firehose/?', stream.firehose);
+
+app.get('/can/?', function(req, res) {
+  res.render('can');
+});
 
 // redirect all others to the index (HTML5 history)
-app.get('*', routes.index);
+// app.get('*', routes.index);
 
 // Start server
 app.listen(3000, function() {

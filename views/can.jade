@@ -1,0 +1,21 @@
+!!!
+html
+  head
+    meta(charset='utf8')
+    base(href='/')
+    title can.js
+    link(rel='stylesheet', href='/css/app.css')
+    block head
+      script(src='js/lib/jquery/jquery.js')
+      script(src='js/lib/CanJS/can.jquery.js', type='text/javascript')
+  body
+    div#contents
+    script(type='text/ejs')#blah
+      <ul>
+      <% for (var i = 0; i < this.attr('length'); i++) { %>
+      <li>
+      <%= this[i].attr('text') %>
+      </li>
+      <% } %>
+      </ul>
+    script(src='js/can.js')

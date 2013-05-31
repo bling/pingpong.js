@@ -1,14 +1,15 @@
 var fs = require('fs');
 var client = require('../modules/client');
 var util = require('../modules/util');
+var _ = require('lodash');
 
-// var t = new client();
-// t.connect();
+// var tclient = new client();
 
-var t = new (require('events').EventEmitter)();
+var tclient = new (require('events').EventEmitter)();
+tclient.subscribeToFirehose = function() { }
+tclient.subscribeToHome = function() { }
 setInterval(function() {
-  'use strict';
-  t.emit('tweet', {
+  tclient.emit('tweet', {
     created_at: new Date(),
     id_str: 'id',
     text: 'the time is ' + (new Date()),
@@ -20,22 +21,35 @@ setInterval(function() {
   });
 }, 1000);
 
-exports.index = function(req, res) {
-  'use strict';
-  res.render('partials/stream');
-};
-
-exports.home = function(req, res) {
-  'use strict';
-  res.writeHead(200, {
-    'Content-Type': 'text/event-stream',
-    'Cache-Control': 'no-cache',
-    'Connection': 'keep-alive'
-  });
+var connections = [];
+var init = function (req, res) {
   if (req.headers.accept == 'text/event-stream') {
-    t.on('tweet', function(tweet) {
-      res.write('data:' + util.minify(tweet));
-      res.write('\n\n');
+    res.writeHead(200, {
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache',
+      'Connection': 'keep-alive'
+    });
+    res.write('\n');
+    connections.push(res);
+    req.on('close', function() {
+      console.log('lost connection');
+    });
+    tclient.on('tweet', function(tweet) {
+      //res.write('data:' + util.minify(tweet) + '\n\n');
+      res.write('data: wtf\n\n');
+      console.log('.');
     });
   }
+};
+
+exports.home = function (req, res) {
+  console.log('home');
+  tclient.subscribeToHome();
+  init(req, res);
+};
+
+exports.firehose = function(req, res) {
+  console.log('firehose');
+  tclient.subscribeToFirehose();
+  init(req, res);
 };
