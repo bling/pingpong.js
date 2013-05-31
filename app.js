@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var stream = require('./routes/stream');
 var app = module.exports = express();

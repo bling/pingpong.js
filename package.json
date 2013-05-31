@@ -12,6 +12,7 @@
   "devDependencies": {
     "grunt": "~0.4.1",
     "shelljs": "~0.1.4",
-    "grunt-contrib-watch": "~0.4.3"
+    "grunt-contrib-watch": "~0.4.3",
+    "jshint": "~2.1.2"
   }
 }

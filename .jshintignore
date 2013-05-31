@@ -1,2 +1,3 @@
 node_modules
-public/js/lib
+public/angular/js/lib
+public/can/lib

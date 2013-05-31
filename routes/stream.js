@@ -6,9 +6,10 @@ var _ = require('lodash');
 // var tclient = new client();
 
 var tclient = new (require('events').EventEmitter)();
-tclient.subscribeToFirehose = function() { }
-tclient.subscribeToHome = function() { }
+tclient.subscribeToFirehose = function() { };
+tclient.subscribeToHome = function() { };
 setInterval(function() {
+  'use strict';
   tclient.emit('tweet', {
     created_at: new Date(),
     id_str: 'id',
@@ -23,6 +24,7 @@ setInterval(function() {
 
 var connections = [];
 var init = function (req, res) {
+  'use strict';
   if (req.headers.accept == 'text/event-stream') {
     res.writeHead(200, {
       'Content-Type': 'text/event-stream',
@@ -43,12 +45,14 @@ var init = function (req, res) {
 };
 
 exports.home = function (req, res) {
+  'use strict';
   console.log('home');
   tclient.subscribeToHome();
   init(req, res);
 };
 
 exports.firehose = function(req, res) {
+  'use strict';
   console.log('firehose');
   tclient.subscribeToFirehose();
   init(req, res);

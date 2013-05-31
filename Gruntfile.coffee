@@ -12,7 +12,7 @@ module.exports = (grunt) ->
         tasks: ['jshint']
 
   grunt.registerTask 'jshint', ->
-    exec('jshint .')
+    exec('node_modules/.bin/jshint .')
 
   grunt.registerTask 'default', ['watch']
 
