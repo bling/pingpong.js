@@ -1,0 +1,23 @@
+{
+  "name": "pingpong.js",
+  "repo": "bling/pingpong.js",
+  "description": "",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "angular": "~1.0.7",
+    "socket.io-client": "~0.9.11"
+  },
+  "development": {},
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": [
+  ],
+  "styles": [
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "public/components"
+  ]
+}
