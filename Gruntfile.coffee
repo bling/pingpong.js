@@ -24,7 +24,7 @@ module.exports = (grunt) ->
         path: __dirname + '/public/components/angular/angular.js'
         exports: 'angular'
     ).bundle (err, src) ->
-      fs.writeFileSync(__dirname + '/public/shims/angular.js', src)
+      fs.writeFileSync(__dirname + '/public/angular/angular.shim.js', src)
       done()
 
   grunt.registerTask 'default', ['watch']
