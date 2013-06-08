@@ -3,6 +3,7 @@
 var express = require('express');
 var stream = require('./routes/stream');
 var app = module.exports = express();
+var io = require('engine.io');
 
 // Configuration
 app.configure(function() {
@@ -48,8 +49,12 @@ app.get('/can/?', function(req, res) {
 // redirect all others to the index (HTML5 history)
 // app.get('*', routes.index);
 
-// Start server
-app.listen(3000, function() {
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+io.on('connection', function (socket) {
+  socket.emit('tweet', {});
 });
+
+// Start server
+io.attach(app.listen(3000, function() {
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+}));
 
