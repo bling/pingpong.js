@@ -1,7 +1,3 @@
-'use strict';
-
-/* Filters */
-
 angular.module('pingpongApp.filters', []).
   filter('interpolate', ['version', function(version) {
     return function(text) {

@@ -1,19 +1,15 @@
 extends layout
 
 block body
-  div(ng-controller='AppCtrl')
+  div
     h2 pingpong.js
-    ul.menu
-      li
-        a(href='angular/home') home
-      li
-        a(href='angular/firehose') firehose
-
     div(ng-view)
 
   script(src='components/angular/angular.js')
-  script(src='angular/js/app.js')
-  script(src='angular/js/services.js')
-  script(src='angular/js/controllers.js')
-  script(src='angular/js/filters.js')
-  script(src='angular/js/directives.js')
+  script(src='components/socket.io-client/dist/socket.io.js')
+  script(src='angular/bundle.js')
+  // script(src='angular/js/app.js')
+  // script(src='angular/js/services.js')
+  // script(src='angular/js/controllers.js')
+  // script(src='angular/js/filters.js')
+  // script(src='angular/js/directives.js')

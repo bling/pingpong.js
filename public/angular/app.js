@@ -1,4 +1,7 @@
-'use strict';
+require('./controllers/firehose_ctrl.js');
+require('./services.js');
+require('./directives.js');
+require('./filters.js');
 
 angular
   .module('pingpongApp', ['pingpongApp.filters', 'pingpongApp.services', 'pingpongApp.directives'])
@@ -6,16 +9,12 @@ angular
     '$routeProvider',
     '$locationProvider',
     function($routeProvider, $locationProvider) {
-      $routeProvider.when('/angular/home', {
+      $routeProvider.when('/angular', {
         templateUrl: 'partials/ng-tweets',
-        controller: HomeStreamCtrl
-      });
-      $routeProvider.when('/angular/firehose', {
-        templateUrl: 'partials/ng-tweets',
-        controller: FirehoseStreamCtrl
+        controller: require('./controllers/firehose_ctrl')
       });
       $routeProvider.otherwise({
-        redirectTo: '/angular'
+        redirectTo: '/angular',
       });
       $locationProvider.html5Mode(true);
     }

@@ -1,5 +1,3 @@
-'use strict';
-
 /* Directives */
 angular.module('pingpongApp.directives', [])
   .directive('tweet', function() {
